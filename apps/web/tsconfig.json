@@ -1,0 +1,29 @@
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./app/*"],
+      "@repo/ui/*": ["../../packages/ui/src/*"],
+      "@repo/tauri-plugin-utils-api/*": [
+        "../../packages/tauri-plugin-utils/src/*"
+      ],
+      "@repo/tauri-bridge-api/*": ["../../packages/tauri-bridge/src/*"],
+      "@repo/universe-api/*": ["../../packages/universe-api/src/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    "next.config.js",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

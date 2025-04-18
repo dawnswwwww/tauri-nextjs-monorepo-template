@@ -1,0 +1,33 @@
+{
+  "name": "@repo/universe-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "build:tauri": "TAURI_PLATFORM=tauri tsup",
+    "build:web": "TAURI_PLATFORM=browser tsup",
+    "dev": "TAURI_PLATFORM=tauri tsup --watch",
+    "dev:web": "TAURI_PLATFORM=browser tsup --watch",
+    "dev:tauri": "TAURI_PLATFORM=tauri tsup --watch",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@repo/tauri-bridge-api": "workspace:*",
+    "@tauri-apps/api": "^2.5.0",
+    "@tauri-apps/plugin-notification": "^2.2.2"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.14.0",
+    "eslint": "^9.24.0",
+    "tsup": "^8.0.2",
+    "typescript": "5.8.2"
+  }
+}

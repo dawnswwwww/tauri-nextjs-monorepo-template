@@ -1,0 +1,46 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "dev": {},
+    "build": {
+      "dependsOn": ["^build"]
+    },
+    "dev:web": {
+      "dependsOn": ["^dev"],
+      "cache": false,
+      "persistent": true
+    },
+    "web:build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "next.config.web.ts"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "native:dev": {
+      "dependsOn": ["^dev"],
+      "passThroughEnv": ["TAURI_DEV_HOST"]
+    },
+    "native:build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "next.config.native.ts"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "desktop:dev": {
+      "dependsOn": ["^dev"],
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["TAURI_DEV_HOST"]
+    },
+    "desktop:build": {
+      "dependsOn": ["web#native:build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "next.config.desktop.ts"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    }
+  }
+}
